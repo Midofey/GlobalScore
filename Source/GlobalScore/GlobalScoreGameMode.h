@@ -34,7 +34,6 @@ public:
 	AGlobalScoreGameMode();
 
 	virtual void PostLogin(APlayerController* NewPlayer) override;
-	virtual void BeginPlay() override;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Leaderboard", meta = (AllowPrivateAccess = true))
 	TArray<FLeaderboardEntry> CachedLeaderboard;

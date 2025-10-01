@@ -47,28 +47,6 @@ void AGlobalScoreGameMode::PostLogin(APlayerController* NewPlayer)
  
 }
 
-
-
-
-void AGlobalScoreGameMode::BeginPlay()
-{
-	Super::BeginPlay();
-		FTimerHandle TimerHandle;
-		UMidofeySQLSubsystem* MidofeySQLSubsystem = GetGameInstance()->GetSubsystem<UMidofeySQLSubsystem>();
-		MidofeySQLSubsystem->SetConnectionProperties(
-			TEXT("127.0.0.1"),
-			TEXT("root"),
-			TEXT("YOUR_PASSWORD_HERE"),
-			TEXT("leaderboard"),
-			3306,
-			FConnectionSslConfig());
-		if (MidofeySQLSubsystem->EstablishConnection())
-		{
-			RefreshLeaderboard();
-			GetWorld()->GetTimerManager().SetTimer(TimerHandle, FTimerDelegate::CreateUObject(this, &AGlobalScoreGameMode::RefreshLeaderboard), 30.0f, true);
-		}
-}
-
 void AGlobalScoreGameMode::SubmitScore(FLeaderboardEntry LeaderboardEntry)
 {
  
